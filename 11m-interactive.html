@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>11m-interactive</title>
+    <style>
+      .js-input {
+        width: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <input 
+    type="number"
+    class="js-input" 
+    placeholder="Введите любое число"
+    >
+
+    <button
+    class="js-button"
+    onclick="addTo()"
+    >Добавить в массив</button>
+
+    <p class="js-array">Массив:</p>
+
+    <p>Чтобы вычислить наибольшее и наименьшее числа из массива, нажмите кнопку "Вычислить"</p>
+
+    <button
+    class="js-button-2"
+    onclick="minMax()"
+    >Вычислить</button>
+
+    <p>Результат:</p>
+    <p class="js-result-min"></p>
+    <p class="js-result-max"></p>
+    
+    <button 
+    onclick="window.location.reload()">
+    Сброс</button>
+    <script>
+      const array = [];
+
+      function addTo() {
+          if (document.querySelector('.js-input').value !== '') {
+          array.push(document.querySelector('.js-input').value);
+          document.querySelector('.js-array').innerHTML = `Массив: ${array}`;
+          document.querySelector('.js-input').value = null;
+          console.log(array);
+        }
+      }
+
+      function minMax() {
+        let object = {
+          min: '',
+          max: ''
+        }
+        let i = 0;
+        let minX = 999;
+        let maxX = -999;
+
+        for (let minimum = -999; minimum < 999; minimum++) {
+          if (minimum == array[i] & minimum < minX) {
+            minX = minimum;
+            i++;
+            minimum = -999;
+          } else if (minimum == array[i] & minimum > minX) {
+            i++;
+            minimum = -999;
+          } 
+        } 
+        
+        object.min = minX;
+
+        i = 0;
+
+        for (let maximum = 999; maximum > -999; maximum--) {
+          if (maximum == array[i] & maximum > maxX) {
+            maxX = maximum;
+            i++;
+            maximum = 999;
+          } else if (maximum == array[i] & maximum < maxX) {
+            i++;
+            maximum = 999;
+          }
+        }
+
+        object.max = maxX;
+
+        if (object.max === -999 & object.min === 999) {
+          object = 'No items in the array';
+          document.querySelector('.js-result-min').innerHTML = 'В массиве нет чисел';
+        } 
+        else if (object.max === object.min) {
+          object = 'Only one item in the array';
+          document.querySelector('.js-result-min').innerHTML = 'Только одно число в массиве';
+        }
+        else {
+          document.querySelector('.js-result-min').innerHTML = `Наименьшее: ${object.min}`;
+          document.querySelector('.js-result-max').innerHTML = `Наибольшее: ${object.max}`;
+        }
+
+        
+        
+        console.log(object);
+
+      }
+    </script>
+  </body>
+</html>
