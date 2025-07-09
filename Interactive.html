@@ -7,6 +7,10 @@
       .js-input {
         width: auto;
       }
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+      }
     </style>
   </head>
   <body>
@@ -45,11 +49,13 @@
       const array = [];
 
       function addTo() {
-        input.blur();
-        if (document.querySelector('.js-input').value !== '') {
-          array.push(Number(document.querySelector('.js-input').value));
+        const input = document.querySelector('.js-input');
+        input.blur(); // убираем фокус с поля — важно для iOS!
+
+        if (input.value !== '') {
+          array.push(Number(input.value));
           document.querySelector('.js-array').innerHTML = `Массив: ${array}`;
-          document.querySelector('.js-input').value = null;
+          input.value = '';
           console.log(array);
         }
       }
