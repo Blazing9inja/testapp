@@ -59,11 +59,11 @@
         let maxX = -999;
 
         for (let minimum = -999; minimum < 999; minimum++) {
-          if (minimum == array[i] & minimum < minX) {
+          if (minimum == array[i] && minimum < minX) {
             minX = minimum;
             i++;
             minimum = -999;
-          } else if (minimum == array[i] & minimum > minX) {
+          } else if (minimum == array[i] && minimum > minX) {
             i++;
             minimum = -999;
           } 
@@ -74,11 +74,11 @@
         i = 0;
 
         for (let maximum = 999; maximum > -999; maximum--) {
-          if (maximum == array[i] & maximum > maxX) {
+          if (maximum == array[i] && maximum > maxX) {
             maxX = maximum;
             i++;
             maximum = 999;
-          } else if (maximum == array[i] & maximum < maxX) {
+          } else if (maximum == array[i] && maximum < maxX) {
             i++;
             maximum = 999;
           }
@@ -86,7 +86,7 @@
 
         object.max = maxX;
 
-        if (object.max === -999 & object.min === 999) {
+        if (object.max === -999 && object.min === 999) {
           object = 'No items in the array';
           document.querySelector('.js-result-min').innerHTML = 'В массиве нет чисел';
         } 
